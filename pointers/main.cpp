@@ -143,6 +143,18 @@ int main() {
     delete lots_of_ints_2;
     lots_of_ints_2 = nullptr;
 
+
+    // Memory leaks:
+    /* 
+    Memory leaks are when we allocate memory on the heap and we forget to deallocate it (delete it) but change the pointer to point to something else
+    so the memory is not deallocated and is not available for other allocations and we can not use it anymore
+    It can happen when we change the pointer to point somwhere else, when we allocate a pointer that is already allocated,
+    when you declare and allocate a pointer inside a scope and you forget to deallocate it before the scope ends (pointer lost but memory not deallocated, leaked)
+
+    */
+
+
+
     // finish the program
     std::cout << "END" << std::endl;
     return 0;
