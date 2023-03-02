@@ -40,7 +40,7 @@ int main() {
     std::cout << "*p_value = " << *p_value << std::endl << value << std::endl << another_value << std::endl; // this will print the value of another_value
 
     // we can directly print the pointer to see the address of the integer
-    std::cout << "p_value = " << p_value << std::endl; // this will print the address of another_value
+    std::cout << "p_value (adress of another_value) = " << p_value << std::endl; // this will print the address of another_value
 
 
     // we can also allocate memory for an integer using a pointer
@@ -92,5 +92,58 @@ int main() {
     delete p_alloc_3;
     p_alloc_3 = nullptr;
 
+    // new can fail when there is no more memory available on the heap or when the memory is fragmented
+    // so we should check if the allocation was successful or not in order to avoid a crash or unexpected behavior
+    // to check if the allocation was successful we can do this
+    
+    /* 
+    int *lots_of_ints {new int[100000000000000]}; // this will allocate memory for 1000000 integers on the heap and will fail
+                                                 // because there is no more memory available on the heap
+
+    for (size_t i{}; i < 100000000000000; ++i) {
+        int *lots_of_ints_loop {new int[100000000000000]}; //this will loop and allocate memory on each iteration until failure (no memory available)
+    }
+    */
+
+    // to avoid this we can tell the program not to raise an exception when the allocation fails (pointer will be set to nullptr)
+    // and later check if the pointer is nullptr or not or we can use a try catch block to handle the exception
+
+    // for the try and catch block we can do this
+    try {
+        int *lots_of_ints_1 {new int[100000000000000]};// this will allocate memory for 1000000 integers on the heap and will fail
+                                                     // because there is no more memory available on the heap
+    } catch (std::bad_alloc &e) {                    // this will catch the exception (if it is bad_alloc) and print it as errir
+                                                     // to catch any exception we can use the catch (std::exception &ex) block
+        std::cerr << "Allocation failed but catched: " << e.what() << std::endl;
+    }
+
+    // to tell the program not to raise an exception when the allocation fails we can do this
+
+    int *lots_of_ints_2 {new (std::nothrow) int{1000000000}}; // this will allocate memory for 1000000 integers on the heap and will fail
+                                                                 // because there is no more memory available on the heap
+                                                                 // but it will not raise an exception and will return nullptr
+                                                                 // and we can check if the pointer is nullptr or not
+
+    if (lots_of_ints_2 == nullptr) {
+        std::cerr << "Allocation failed" << std::endl;
+    } else {
+        std::cout << "Allocation succeeded" << std::endl;
+    }
+
+    // in compact form
+    /*
+    if (p_number){
+        // allocation succeeded
+    } else {
+        // allocation failed
+    }
+    */
+
+    // you can use delete to deallocate memory in a null pointer and is safe to do so
+    delete lots_of_ints_2;
+    lots_of_ints_2 = nullptr;
+
+    // finish the program
+    std::cout << "END" << std::endl;
     return 0;
 }
