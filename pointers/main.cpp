@@ -154,6 +154,40 @@ int main() {
     */
 
 
+    // Dinamically allocate an array
+    size_t size{10};
+    int *vect { new int[size]};// this will allocate memory for an array of integers on the heap
+
+    int *vect_2 { new(std::nothrow) int[size]{}}; // this will allocate memory for an array of integers on the heap
+                                                    // and will initialize all the elements to 0
+    
+    int *vect_3 { new(std::nothrow) int[size]{1,2,3,4,5,6,7,8,9,10}}; // this will allocate memory for an array of integers on the heap
+                                                                        // and will initialize all the elements
+
+
+
+    // we can now print the array
+    if (vect_3) {
+        for (size_t i{}; i < size; ++i) {
+            // we can access the elements by using the pointer and the index or by using the pointer and the offset (pointing to the next element)
+            std::cout << "value: " << vect_3[i] << " : " <<  *(vect_3+i) << " adress: " << &vect_3[i] << std::endl;
+        }
+        std::cout << std::endl;
+    }
+
+    // You shold notice that dinamically allocated arrays are not the same as static arrays
+    // they can not be used in range based for loops and dont work with the sizeof operator
+    // this is because the arrays decay to pointers, the same that happens when we pass an array to a function
+
+    // now we can also deallocate the memory of the array
+    delete [] vect_3;
+    vect_3 = nullptr;
+
+    delete [] vect_2;
+    vect_2 = nullptr;
+
+    delete [] vect;
+    vect = nullptr;
 
     // finish the program
     std::cout << "END" << std::endl;
