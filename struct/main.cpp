@@ -6,11 +6,11 @@
 // so if we do not specify the access of a member, it will be private in a class and public in a struct
 
 class Dog {
-    std::string name{ "Dog" };
+    std::string name{"Dog"};
 };
 
 struct Cat {
-    std::string name{ "Cat" };
+    std::string name{"Cat"};
 };
 
 // a common practice is to use struct for data only and class for data and functions
@@ -41,6 +41,28 @@ int main() {
     point.y = 20;
 
     std::cout << "(" << point.x << ", " << point.y << ")" << std::endl;
+
+
+
+
+    // SIZE OF A CLASS
+    // the size of a class is the sum of the size of its members
+    std::cout << "Size of Point: " << sizeof(point) << std::endl;
+    std::cout << "Size of x: " << sizeof(point.x) << std::endl;
+    std::cout << "Size of y: " << sizeof(point.y) << std::endl;
+
+    // if we have pointers (in this case strings are pointers)
+    // the size of the class will be the size of the pointer not the size of the string that
+    // the pointer points to
+    std::cout << "Size of Dog: " << sizeof(dog) << std::endl;
+
+    std::cout << "Size of cat_name: " << sizeof(cat.name) << std::endl;
+    std::cout << "Size of Cat: " << sizeof(cat) << std::endl;
+    cat.name = "Kitty with a very very very long name";
+    std::cout << "Size of cat_name: " << sizeof(cat.name) << std::endl;
+    std::cout << "Size of Cat: " << sizeof(cat) << std::endl;
+
+
 
     std::cout << "END" << std::endl;
     return 0;
