@@ -21,6 +21,7 @@ Dog::Dog(std::string_view name, std::string_view breed, int age){
 // and it will manage the memory on the heap
 Dog::~Dog(){
     delete dog_age;
+    dog_age = nullptr;
     std::cout << "Destructor called for " << dog_name << std::endl;
 }
 

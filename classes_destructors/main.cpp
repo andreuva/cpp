@@ -62,6 +62,7 @@ int main() {
 
     // and we can call the destructor by using the delete keyword
     // delete dog2;
+    // dog2 = nullptr;
 
     std::cout << "END" << std::endl;
     return 0;
