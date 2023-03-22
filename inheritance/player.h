@@ -14,6 +14,7 @@ class Player : public Person{
     public:
         Player() = default;
         Player(std::string_view game_name);
+        Player(std::string_view game_name, std::string_view name, std::string_view surname, int age);
         ~Player();
     private:
         std::string game_name{"Player"};

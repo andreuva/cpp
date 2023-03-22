@@ -14,17 +14,22 @@
 int main() {
 
     // we can create a Person object
-    Person person{"John", "Doe", 30};
+    // Person person{"John", "Doe", 30};
 
     // we can create a Player object
     // this will create a player object and a person object inside the player object
     // the person object will have the default constructor name and surname values
-    Player player{"valorant"};  
+    // Player player{"valorant"};
+
+    // we can create a Player object with the overloading constructor
+    // this will create a player object and a initialized person object inside the player object
+    Player player2{"valorant", "Max", "Doe", 25};
 
     // we can print the Person object
-    std::cout << person;
+    // std::cout << person;
     // and we can print the Player object
-    std::cout << player;
+    // std::cout << player;
+    std::cout << player2;
 
     std::cout << "END" << std::endl;
     return 0;
