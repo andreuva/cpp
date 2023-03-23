@@ -35,6 +35,7 @@ class Person{
     // Here we can define a protected member wich can be accessed by the derived classes but not by the outside world
     protected:
         std::string adress{"None"};
+        std::string get_adress() const {return adress;}
 };
 
 #endif // PERSON_H
