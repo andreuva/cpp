@@ -34,7 +34,16 @@ class Engineer : public Person{
         std::string get_position() const {return position;}
 
         // setters
-        void set_company(std::string_view company) {this->company = company;}
+        // we can set a setter that overrides the name of a base clase method
+        void set_name(std::string_view company) {this->company = company;}
+        /* 
+        now calling set_name on an engineer class will call the set_name method of the engineer class
+        and not the one of the base class
+        we can continue to call the base class method by using the scope resolution operator
+        this->Person::set_name(name);
+        or from outside the class
+        engineer.Person::set_name(name);
+        */
         void set_position(std::string_view position) {this->position = position;}
 
     private:

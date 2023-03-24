@@ -20,6 +20,14 @@ int main() {
     // we can see that the default constructor of the base class is called
     // if we remove the default constructor of the base class, we will get an error
 
+    // we can also change the name of the company
+    engineer2.set_name("Microsoft");
+    std::cout << engineer2 << std::endl;
+
+    // but if we want to change the name of the person we have to use the scope resolution operator
+    engineer2.Person::set_name("Will");
+    std::cout << engineer2 << std::endl;
+
     // we can also create a new default civil engineer
     CivilEngineer civilEngineer1;
     std::cout << civilEngineer1 << std::endl;
