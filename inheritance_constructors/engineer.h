@@ -14,6 +14,18 @@ class Engineer : public Person{
         // we can also make a constructor that takes a person object as a parameter
         Engineer(const Person& source, std::string_view company, std::string_view position);
 
+        // we can create a constructor that only initializes the base class inheriting base class constructor
+        using Person::Person;
+        /*
+        this will create a constructor that will do something like
+        Engineer(std::string_view name, std::string_view surname, int age, std::string_view adress)
+            : Person(name, surname, age, adress) {}
+
+        it will be inherit with the same access specifier it had in the base class
+        copoy constructors are not inherited but you will not notice it because the compiler will create one for you
+        otherwise it will import all the other base class constructors
+        */
+
         Engineer(std::string_view company, std::string_view position);
         Engineer(std::string_view name, std::string_view surname, int age, std::string_view adress, std::string_view company, std::string_view position);
         ~Engineer();
